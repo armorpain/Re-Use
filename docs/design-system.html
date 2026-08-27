@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReUse · Sistema de Identidade Visual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #ECEFE2;
+    --paper: #F8F6EC;
+    --paper-2: #F1EEE0;
+    --ink: #202B1C;
+    --ink-soft: #55614C;
+    --moss: #33502A;
+    --moss-dark: #22331B;
+    --mustard: #D6A23C;
+    --clay: #A65639;
+    --line: #C9C6B2;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+    --radius: 16px;
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    background-image:
+      radial-gradient(var(--line) 0.6px, transparent 0.6px);
+    background-size: 14px 14px;
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{ max-width:960px; margin:0 auto; padding:48px 24px 96px; }
+
+  /* ---- signature stamp mark ---- */
+  .stamp{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:64px; height:64px; border-radius:50%;
+    border:2px dashed var(--moss);
+    transform:rotate(-6deg);
+    font-family:var(--font-mono); font-size:10px; letter-spacing:0.5px;
+    color:var(--moss); text-align:center; flex-shrink:0;
+    position:relative;
+  }
+  .stamp::before{
+    content:"R"; font-family:var(--font-display); font-weight:700; font-size:26px;
+    color:var(--moss);
+  }
+
+  header.hero{
+    display:flex; align-items:center; gap:20px; margin-bottom:8px;
+  }
+  .hero-title{
+    font-family:var(--font-display); font-weight:700; font-size:42px;
+    letter-spacing:-0.5px; margin:0; color:var(--ink);
+  }
+  .hero-sub{
+    font-family:var(--font-mono); font-size:12px; letter-spacing:1.5px;
+    text-transform:uppercase; color:var(--ink-soft); margin:6px 0 0;
+  }
+
+  .lede{
+    font-family:var(--font-display); font-style:italic; font-size:20px;
+    color:var(--ink-soft); max-width:560px; margin:28px 0 56px; line-height:1.5;
+  }
+
+  section{ margin-bottom:64px; }
+
+  .eyebrow{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:2px;
+    text-transform:uppercase; color:var(--clay); margin:0 0 10px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .eyebrow::before{ content:"✂"; font-size:12px; }
+
+  h2.section-title{
+    font-family:var(--font-display); font-size:26px; font-weight:600;
+    margin:0 0 24px; color:var(--ink);
+  }
+
+  /* ---- tag card: dashed torn-edge card ---- */
+  .tag-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    position:relative;
+    padding:22px;
+  }
+  .tag-card::before{
+    content:"";
+    position:absolute; top:14px; left:-6px;
+    width:12px; height:12px; border-radius:50%;
+    background:var(--bg); border:1px solid var(--line);
+  }
+
+  /* ---- palette ---- */
+  .palette{ display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:14px; }
+  .swatch{
+    border-radius:12px; padding:16px 14px; min-height:110px;
+    display:flex; flex-direction:column; justify-content:space-between;
+    border:1px solid rgba(0,0,0,0.06);
+  }
+  .swatch .name{ font-family:var(--font-body); font-weight:600; font-size:13px; }
+  .swatch .hex{ font-family:var(--font-mono); font-size:12px; opacity:0.85; margin-top:4px; }
+  .swatch .use{ font-size:11px; opacity:0.75; margin-top:10px; line-height:1.4; }
+
+  /* ---- typography ---- */
+  .type-row{ border-top:1px dashed var(--line); padding:24px 0; }
+  .type-row:first-child{ border-top:none; padding-top:0; }
+  .type-label{ font-family:var(--font-mono); font-size:11px; letter-spacing:1px; color:var(--ink-soft); text-transform:uppercase; margin-bottom:8px; }
+  .display-specimen{ font-family:var(--font-display); font-size:38px; font-weight:600; margin:0; color:var(--ink); line-height:1.15; }
+  .body-specimen{ font-family:var(--font-body); font-size:16px; line-height:1.6; color:var(--ink); max-width:560px; margin:0; }
+  .mono-specimen{ font-family:var(--font-mono); font-size:14px; color:var(--moss-dark); background:var(--paper-2); display:inline-block; padding:8px 12px; border-radius:6px; }
+
+  /* ---- spacing scale ---- */
+  .scale{ display:flex; align-items:flex-end; gap:16px; flex-wrap:wrap; }
+  .scale-item{ text-align:center; }
+  .scale-bar{ background:var(--moss); border-radius:3px; margin:0 auto 8px; }
+  .scale-item .lbl{ font-family:var(--font-mono); font-size:11px; color:var(--ink-soft); }
+
+  /* ---- components ---- */
+  .comp-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  @media (max-width:640px){ .comp-grid{ grid-template-columns:1fr; } }
+
+  .btn{
+    font-family:var(--font-body); font-weight:600; font-size:14px;
+    padding:13px 22px; border-radius:12px; border:none; cursor:pointer;
+    display:inline-block; margin:6px 8px 6px 0;
+  }
+  .btn-primary{ background:var(--moss); color:#fff; }
+  .btn-secondary{ background:transparent; color:var(--moss); border:1.5px solid var(--moss); }
+
+  .chip{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:0.5px;
+    padding:6px 12px; border-radius:999px; border:1px dashed var(--ink-soft);
+    display:inline-block; margin:4px 6px 4px 0; text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .chip.novo{ border-color:var(--moss); color:var(--moss); }
+  .chip.usado{ border-color:var(--mustard); color:#8a6a1f; }
+  .chip.pecas{ border-color:var(--clay); color:var(--clay); }
+
+  .demo-card{
+    background:var(--paper); border-radius:14px; padding:18px; border:1px solid var(--line);
+  }
+  .demo-card .title{ font-family:var(--font-body); font-weight:600; font-size:15px; margin-bottom:6px; }
+  .demo-card .desc{ font-size:13px; color:var(--ink-soft); line-height:1.5; }
+
+  /* ---- signature stamps grid ---- */
+  .stamp-grid{ display:flex; gap:28px; flex-wrap:wrap; align-items:center; }
+  .stamp-lg{
+    width:96px; height:96px; border-radius:50%;
+    border:2px dashed var(--moss);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-mono); font-size:9px; text-align:center;
+    color:var(--moss); position:relative;
+  }
+  .stamp-lg span{ font-family:var(--font-display); font-weight:700; font-size:13px; display:block; }
+  .stamp-lg.clay{ border-color:var(--clay); color:var(--clay); transform:rotate(4deg); }
+  .stamp-lg.mustard{ border-color:var(--mustard); color:#8a6a1f; transform:rotate(-3deg); }
+
+  /* ---- icons ---- */
+  .icon-row{ display:flex; gap:32px; flex-wrap:wrap; }
+  .icon-item{ text-align:center; }
+  .icon-item svg{ display:block; margin:0 auto 8px; }
+  .icon-item .lbl{ font-family:var(--font-mono); font-size:10px; color:var(--ink-soft); text-transform:uppercase; }
+
+  /* ---- voice ---- */
+  .voice-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:640px){ .voice-grid{ grid-template-columns:1fr; } }
+  .voice-col{ padding:16px; border-radius:12px; }
+  .voice-col.no{ background:#F3E6E0; }
+  .voice-col.yes{ background:#E8F0E2; }
+  .voice-col .lbl{ font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; display:block; }
+  .voice-col.no .lbl{ color:var(--clay); }
+  .voice-col.yes .lbl{ color:var(--moss); }
+  .voice-col p{ margin:0 0 8px; font-size:14px; }
+
+  footer{
+    border-top:1px dashed var(--line); padding-top:20px; margin-top:40px;
+    font-family:var(--font-mono); font-size:11px; color:var(--ink-soft);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="stamp"></div>
+    <div>
+      <p class="hero-title">ReUse</p>
+      <p class="hero-sub">Sistema de Identidade Visual · v1.0</p>
+    </div>
+  </header>
+  <p class="lede">Uma linguagem visual inspirada em etiquetas de brechó e carimbos de verificação, porque cada objeto reaproveitado carrega a marca de uma segunda vida.</p>
+
+  <!-- CONCEITO -->
+  <section>
+    <p class="eyebrow">Conceito</p>
+    <div class="tag-card">
+      <p class="body-specimen">O ponto de partida não é o verde genérico de "sustentabilidade". É o universo físico do re-uso: a <strong>etiqueta pendurada</strong> num casaco de brechó, o <strong>carimbo de aprovado</strong> num processo de doação, o <strong>furo de picote</strong> de uma nota fiscal destacável. Esses elementos viram o vocabulário visual do produto, do ícone da marca aos badges de condição do item.</p>
+    </div>
+  </section>
+
+  <!-- PALETA -->
+  <section>
+    <p class="eyebrow">Paleta de cores</p>
+    <h2 class="section-title">Cores</h2>
+    <div class="palette">
+      <div class="swatch" style="background:var(--moss); color:#fff;">
+        <div><div class="name">Musgo</div><div class="hex">#33502A</div></div>
+        <div class="use">Cor primária da marca. Botões principais, títulos de destaque, ícone da marca.</div>
+      </div>
+      <div class="swatch" style="background:var(--mustard); color:#3a2c0d;">
+        <div><div class="name">Mostarda</div><div class="hex">#D6A23C</div></div>
+        <div class="use">Accent de atenção. Badges "usado/seminovo", alertas suaves, destaques.</div>
+      </div>
+      <div class="swatch" style="background:var(--clay); color:#fff;">
+        <div><div class="name">Argila</div><div class="hex">#A65639</div></div>
+        <div class="use">Accent raro. Usado só em carimbos e estados críticos, nunca como cor base.</div>
+      </div>
+      <div class="swatch" style="background:var(--ink); color:#fff;">
+        <div><div class="name">Tinta</div><div class="hex">#202B1C</div></div>
+        <div class="use">Texto principal. Alto contraste sobre o papel.</div>
+      </div>
+      <div class="swatch" style="background:var(--paper); color:var(--ink); border:1px solid var(--line);">
+        <div><div class="name">Papel</div><div class="hex">#F8F6EC</div></div>
+        <div class="use">Superfície de cards. Simula papel reciclado, não branco puro.</div>
+      </div>
+      <div class="swatch" style="background:var(--bg); color:var(--ink); border:1px solid var(--line);">
+        <div><div class="name">Fundo</div><div class="hex">#ECEFE2</div></div>
+        <div class="use">Fundo de tela. Textura pontilhada sutil (ver body desta página).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIPOGRAFIA -->
+  <section>
+    <p class="eyebrow">Tipografia</p>
+    <h2 class="section-title">Três papéis, três fontes</h2>
+    <div class="type-row">
+      <div class="type-label">Display · Fraunces (títulos, propostas de valor)</div>
+      <p class="display-specimen">Uma segunda vida<br>para cada objeto.</p>
+    </div>
+    <div class="type-row">
+      <div class="type-label">Corpo · Inter (textos, descrições, UI)</div>
+      <p class="body-specimen">Usada em parágrafos, descrições de item e textos de interface. Neutra e muito legível em telas pequenas, equilibrando o caráter da Fraunces sem competir com ela.</p>
+    </div>
+    <div class="type-row">
+      <div class="type-label">Utilitária · IBM Plex Mono (tags, preços, metadados)</div>
+      <span class="mono-specimen">COD. RU-0231 · USADO · BOM ESTADO</span>
+    </div>
+  </section>
+
+  <!-- ESPAÇAMENTO -->
+  <section>
+    <p class="eyebrow">Espaçamento &amp; raio</p>
+    <h2 class="section-title">Escala (base 4px)</h2>
+    <div class="scale">
+      <div class="scale-item"><div class="scale-bar" style="width:8px; height:4px;"></div><div class="lbl">4</div></div>
+      <div class="scale-item"><div class="scale-bar" style="width:8px; height:8px;"></div><div class="lbl">8</div></div>
+      <div class="scale-item"><div class="scale-bar" style="width:8px; height:16px;"></div><div class="lbl">16</div></div>
+      <div class="scale-item"><div class="scale-bar" style="width:8px; height:24px;"></div><div class="lbl">24</div></div>
+      <div class="scale-item"><div class="scale-bar" style="width:8px; height:32px;"></div><div class="lbl">32</div></div>
+      <div class="scale-item"><div class="scale-bar" style="width:8px; height:48px;"></div><div class="lbl">48</div></div>
+    </div>
+    <p class="body-specimen" style="margin-top:18px; font-size:13px; color:var(--ink-soft);">Raio: 12px em botões e chips pequenos · 16px em cards ("tag-card") · 999px (pill) em chips de status · circular em carimbos/badges.</p>
+  </section>
+
+  <!-- COMPONENTES -->
+  <section>
+    <p class="eyebrow">Componentes</p>
+    <h2 class="section-title">Botões, tags e cards</h2>
+    <div class="comp-grid">
+      <div class="demo-card">
+        <div class="title">Botões</div>
+        <button class="btn btn-primary">Começar agora</button>
+        <button class="btn btn-secondary">Saiba mais</button>
+        <p class="desc" style="margin-top:10px;">Primário: musgo sólido. Secundário: contorno, mesma cor. Nunca usar argila em botão de ação comum.</p>
+      </div>
+      <div class="demo-card">
+        <div class="title">Chips de condição do item</div>
+        <div>
+          <span class="chip novo">Como novo</span>
+          <span class="chip usado">Usado · bom estado</span>
+          <span class="chip pecas">Para peças</span>
+        </div>
+        <p class="desc" style="margin-top:10px;">Estilo etiqueta: fonte mono, borda tracejada, sem preenchimento.</p>
+      </div>
+    </div>
+    <div class="tag-card" style="margin-top:20px;">
+      <div class="title" style="font-family:var(--font-body); font-weight:600; margin-bottom:6px;">Tag Card (evolução do SectionCard)</div>
+      <p class="desc" style="font-size:13px; color:var(--ink-soft);">Card com "furo de picote" no canto esquerdo, referência ao destacável de uma etiqueta. Usado para blocos de conteúdo e para anúncios de item.</p>
+    </div>
+  </section>
+
+  <!-- ASSINATURA -->
+  <section>
+    <p class="eyebrow">Elemento de assinatura</p>
+    <h2 class="section-title">O carimbo de re-uso</h2>
+    <p class="body-specimen" style="margin-bottom:20px;">Um selo circular de borda tracejada, levemente rotacionado, como um carimbo de mão real. É o único elemento "ousado" do sistema e se repete de forma consistente: no ícone do app, em divisores de seção e em confirmações dentro do fluxo.</p>
+    <div class="stamp-grid">
+      <div class="stamp-lg"><span>RE</span>USO</div>
+      <div class="stamp-lg mustard"><span>OK</span>VERIFICADO</div>
+      <div class="stamp-lg clay"><span>♻</span>DOADO</div>
+    </div>
+  </section>
+
+  <!-- ÍCONES -->
+  <section>
+    <p class="eyebrow">Iconografia</p>
+    <h2 class="section-title">Linha fina, cantos arredondados</h2>
+    <div class="icon-row">
+      <div class="icon-item">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#33502A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6M10 18l-6-6 6-6"/></svg>
+        <div class="lbl">Troca</div>
+      </div>
+      <div class="icon-item">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#33502A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7L9 18l-5-5"/><rect x="3" y="3" width="18" height="18" rx="4"/></svg>
+        <div class="lbl">Verificado</div>
+      </div>
+      <div class="icon-item">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#33502A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41L11 3.83A2 2 0 0 0 9.59 3H4a1 1 0 0 0-1 1v5.59a2 2 0 0 0 .59 1.41l9.58 9.59a2 2 0 0 0 2.82 0l4.6-4.6a2 2 0 0 0 0-2.99z"/><circle cx="7.5" cy="7.5" r="1"/></svg>
+        <div class="lbl">Etiqueta</div>
+      </div>
+      <div class="icon-item">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#33502A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v2M3 8h18l-1.5 12.5a1 1 0 0 1-1 .9H5.5a1 1 0 0 1-1-.9L3 8z"/></svg>
+        <div class="lbl">Doação</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOZ E TOM -->
+  <section>
+    <p class="eyebrow">Voz &amp; tom</p>
+    <h2 class="section-title">Como o ReUse fala</h2>
+    <div class="voice-grid">
+      <div class="voice-col no">
+        <span class="lbl">Evitar</span>
+        <p>"Submeter item para doação"</p>
+        <p>"Erro ao processar sua solicitação"</p>
+        <p>"Nenhum resultado encontrado :("</p>
+      </div>
+      <div class="voice-col yes">
+        <span class="lbl">Preferir</span>
+        <p>"Doar item"</p>
+        <p>"Não conseguimos salvar. Tente de novo."</p>
+        <p>"Nada por aqui ainda, que tal anunciar o primeiro item?"</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>ReUse · Sistema de Identidade Visual</span>
+    <span>2026</span>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "ReUse",
+    "slug": "reuse-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#ECEFE2",
+    "splash": {
+      "backgroundColor": "#ECEFE2"
+    },
+    "android": {
+      "package": "com.reuse.app",
+      "backgroundColor": "#ECEFE2"
+    },
+    "ios": {
+      "bundleIdentifier": "com.reuse.app"
+    }
+  }
+}
