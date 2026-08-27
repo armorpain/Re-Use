@@ -1,14 +1,5 @@
-# ReUse | Mobile | Sprint 1: Visão Inicial da Plataforma
+# ReUse | Mobile 
 
-## 📌 Contexto da Sprint
-
-Este repositório contém a entrega da **Sprint 1** do projeto **ReUse**, uma plataforma digital voltada à economia sustentável, reutilização de produtos e consumo consciente.
-
-O foco desta fase não está na complexidade técnica, mas em construir o **primeiro contato do usuário** com o produto: uma tela inicial clara, bem estruturada e já alinhada a uma identidade visual própria, capaz de comunicar a proposta de valor do ReUse e o problema que ele busca resolver.
-
-## 💡 O problema
-
-Todos os anos, uma grande quantidade de produtos em bom estado é descartada por falta de um destino adequado, seja por desconhecimento de onde doar, trocar ou vender, seja pela falta de uma plataforma simples que conecte quem quer se desfazer de um item com quem precisa dele. Isso gera desperdício de recursos e agrava o impacto ambiental do consumo.
 
 ## 🌱 Proposta de valor
 
@@ -99,15 +90,7 @@ npm start
 
 Em seguida, escaneie o QR Code com o app **Expo Go** (Android/iOS), pressione `w` para abrir no navegador, ou `a`/`i` para um emulador.
 
-## 🚫 Fora do escopo desta Sprint
-
-Conforme definido no desafio, não fazem parte desta fase:
-- Motion design ou animações
-- Microinterações avançadas
-- Backend ou APIs externas
-- Banco de dados ou persistência de dados
-- Autenticação real de usuários
 
 ## 👥 Equipe
 
-_(preencher com os nomes dos integrantes do time)_
+Gabriela Guedes, Isabela Almeida e Victor Nogueira.
