@@ -1,19 +1,12 @@
-# ReUse | Mobile | Sprint 2: App em React Native
+# ReUse | Mobile 
 
-## Contexto da Sprint
+##  O problema
 
-Este repositório contém o app **ReUse**, uma plataforma para **doar, trocar e vender** produtos usados a preços acessíveis, incentivando o consumo consciente e reduzindo o desperdício.
+Todos os anos, uma grande quantidade de produtos em bom estado é descartada por falta de um destino adequado, seja por desconhecimento de onde doar, trocar ou vender, seja pela falta de uma plataforma simples que conecte quem quer se desfazer de um item com quem precisa dele. Isso gera desperdício de recursos e agrava o impacto ambiental do consumo.
 
-Na **Sprint 1** foi construída a tela de apresentação, já alinhada ao Sistema de Identidade Visual. Na **Sprint 2** essa tela virou a **primeira tela do app** e, a partir dela, foram desenvolvidas todas as telas planejadas nos wireframes, com navegação, Async Storage e câmera. O app roda no celular, no tablet e no navegador do computador.
+##  Proposta de valor
 
-## Fluxo principal
-
-1. **Apresentação** (tela da Sprint 1): primeira tela ao abrir o app pela primeira vez, com os botões fixos embaixo.
-2. **Começar agora** leva ao **Cadastro** e **Entrar** leva ao **Login**.
-3. Com a sessão iniciada: **Início (feed)**, **Favoritos**, **Anunciar**, **Conversas** e **Perfil**.
-4. Telas internas: detalhe do item, chat, meus anúncios, configurações e câmera.
-
-Conta de teste: `demo@reuse.app` com senha `123456` (há um atalho na tela de login).
+O **ReUse** é um aplicativo que conecta pessoas para **reutilizar, trocar e doar produtos**, incentivando o consumo consciente e reduzindo o desperdício, de forma simples e acessível a partir do celular.
 
 ## Doação, troca e venda
 
@@ -86,14 +79,6 @@ npm start
 
 Em seguida, escaneie o QR Code com o **Expo Go**, pressione `w` para abrir no navegador, ou `a`/`i` para um emulador.
 
-## Créditos das fotos de exemplo
+## 👥 Equipe
 
-Fotos dos anúncios de exemplo do banco gratuito [Pexels](https://www.pexels.com), servidas pelo próprio site. Sem internet, os cards mostram o ícone da categoria no lugar da foto.
-
-## Fora do escopo
-
-Backend e APIs reais, autenticação real (o login é local, para demonstração) e pagamento dentro do app.
-
-## Equipe
-
-_(preencher com os nomes dos integrantes do time)_
+Gabriela Guedes, Isabela Almeida, Victor Nogueira e Felipe Xavier.
