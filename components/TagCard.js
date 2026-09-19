@@ -3,20 +3,11 @@ import { View, StyleSheet } from 'react-native';
 import { colors } from '../theme/colors';
 import { radius } from '../theme/spacing';
 
-/**
- * TagCard
- * Evolução do antigo SectionCard: card com um "furo de picote" no canto
- * esquerdo, referência ao destacável de uma etiqueta física.
- * Reutilizável: usado para blocos de conteúdo e para o preview de item.
- *
- * Props:
- * - highlight: boolean, aplica o destaque "musgo claro" (proposta principal)
- * - children: conteúdo livre (título + texto, ou qualquer composição)
- */
-export default function TagCard({ children, highlight = false }) {
+
+export default function TagCard({ children, highlight = false, punch = true, style }) {
   return (
-    <View style={[styles.card, highlight && styles.cardHighlight]}>
-      <View style={styles.hole} />
+    <View style={[styles.card, highlight && styles.cardHighlight, style]}>
+      {punch ? <View style={styles.hole} /> : null}
       {children}
     </View>
   );
@@ -29,7 +20,6 @@ const styles = StyleSheet.create({
     borderColor: colors.line,
     borderRadius: radius.md,
     padding: 20,
-    marginTop: 4,
   },
   cardHighlight: {
     backgroundColor: colors.highlightBg,

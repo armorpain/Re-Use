@@ -1,6 +1,6 @@
 /**
  * Paleta oficial do ReUse. Sistema de Identidade Visual v1.0
- * Espelha as variáveis CSS do guia visual (reuse-design-system.html).
+ * Espelha as variáveis CSS do guia visual (docs/design-system.html).
  */
 export const colors = {
   bg: '#ECEFE2',        // fundo de tela
@@ -16,4 +16,11 @@ export const colors = {
   line: '#C9C6B2',       // bordas e divisores
   highlightBg: '#E8F0E2',
   highlightBorder: '#BFE0C4',
+
+  // adicionados na Sprint 2
+  white: '#FFFFFF',
+  dangerBg: '#F3E6E0',
+  placeholder: '#7C8573',
+  overlay: 'rgba(32,43,28,0.55)',
+  alert: '#C8402F',        // bolinha de notificacao (mensagem nova)
 };

@@ -1,19 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { fonts } from '../theme/typography';
 
-/**
- * SectionEyebrow
- * Rótulo curto acima de cada bloco de conteúdo, com o ícone de tesoura (✂)
- * que remete ao "destacável" de uma etiqueta, mesma linguagem do guia visual.
- * Reutilizável: usado antes de cada seção da tela.
- */
-export default function SectionEyebrow({ label }) {
+
+export default function SectionEyebrow({ label, first = false }) {
   return (
-    <View style={styles.row}>
-      <Text style={styles.icon}>✂</Text>
-      <Text style={styles.label}>{label}</Text>
+    <View style={[styles.row, first && { marginTop: 0 }]}>
+      <Feather name="scissors" size={13} color={colors.clay} />
+      <Text style={styles.label} accessibilityRole="header">{label}</Text>
     </View>
   );
 }
@@ -22,11 +18,10 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
-    marginTop: 28,
-    marginBottom: 10,
+    gap: 8,
+    marginTop: 40,
+    marginBottom: 14,
   },
-  icon: { fontSize: 12, color: colors.clay },
   label: {
     fontFamily: fonts.mono,
     fontSize: 11,

@@ -78,7 +78,7 @@
     text-transform:uppercase; color:var(--clay); margin:0 0 10px;
     display:flex; align-items:center; gap:8px;
   }
-  .eyebrow::before{ content:"✂"; font-size:12px; }
+  .eyebrow::before{ content:""; width:14px; height:14px; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23A65639' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='6' cy='6' r='3'/%3E%3Ccircle cx='6' cy='18' r='3'/%3E%3Cline x1='20' y1='4' x2='8.12' y2='15.88'/%3E%3Cline x1='14.47' y1='14.48' x2='20' y2='20'/%3E%3Cline x1='8.12' y1='8.12' x2='12' y2='12'/%3E%3C/svg%3E") no-repeat center / contain; }
 
   h2.section-title{
     font-family:var(--font-display); font-size:26px; font-weight:600;
@@ -291,7 +291,7 @@
         <div>
           <span class="chip novo">Como novo</span>
           <span class="chip usado">Usado · bom estado</span>
-          <span class="chip pecas">Para peças</span>
+          <span class="chip pecas">Para reparo</span>
         </div>
         <p class="desc" style="margin-top:10px;">Estilo etiqueta: fonte mono, borda tracejada, sem preenchimento.</p>
       </div>
@@ -310,7 +310,7 @@
     <div class="stamp-grid">
       <div class="stamp-lg"><span>RE</span>USO</div>
       <div class="stamp-lg mustard"><span>OK</span>VERIFICADO</div>
-      <div class="stamp-lg clay"><span>♻</span>DOADO</div>
+      <div class="stamp-lg clay"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:0 auto 2px"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></span>DOADO</div>
     </div>
   </section>
 

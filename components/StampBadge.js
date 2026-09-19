@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { fonts } from '../theme/typography';
 
@@ -7,50 +8,47 @@ const VARIANT_COLORS = {
   moss: colors.moss,
   mustard: colors.mustardText,
   clay: colors.clay,
+  paper: colors.paper, 
 };
 
-/**
- * StampBadge
- * O elemento de assinatura do sistema: um selo circular de borda tracejada,
- * levemente rotacionado, como um carimbo de mão real. Usado em confirmações,
- * divisores de seção e para comunicar confiança/verificação no fluxo.
- *
- * Props:
- * - label: texto curto e grande (ex: "RE", "OK", "♻")
- * - caption: legenda pequena abaixo (ex: "USO", "VERIFICADO")
- * - variant: 'moss' | 'mustard' | 'clay'
- * - rotation: ângulo do selo (string CSS, ex: '-4deg')
- */
-export default function StampBadge({ label, caption, variant = 'moss', rotation = '-4deg' }) {
+
+export default function StampBadge({ label, icon, caption, variant = 'moss', rotation = '-4deg', size = 84, children, style }) {
   const tint = VARIANT_COLORS[variant] || colors.moss;
   return (
-    <View style={[styles.badge, { borderColor: tint, transform: [{ rotate: rotation }] }]}>
-      <Text style={[styles.label, { color: tint }]}>{label}</Text>
-      <Text style={[styles.caption, { color: tint }]}>{caption}</Text>
+    <View
+      accessibilityElementsHidden
+      importantForAccessibility="no-hide-descendants"
+      style={[
+        styles.badge,
+        { width: size, height: size, borderRadius: size / 2, borderColor: tint, transform: [{ rotate: rotation }] },
+        style,
+      ]}
+    >
+      {children}
+      {!children && icon ? <Feather name={icon} size={size * 0.3} color={tint} /> : null}
+      {!children && !icon && label ? (
+        <Text style={[styles.label, { color: tint, fontSize: size * 0.19 }]}>{label}</Text>
+      ) : null}
+      {!children && caption ? (
+        <Text style={[styles.caption, { color: tint, fontSize: Math.max(7, size * 0.085) }]}>{caption}</Text>
+      ) : null}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   badge: {
-    width: 84,
-    height: 84,
-    borderRadius: 42,
     borderWidth: 2,
     borderStyle: 'dashed',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 6,
   },
-  label: {
-    fontFamily: fonts.displayBold,
-    fontSize: 16,
-  },
+  label: { fontFamily: fonts.displayBold },
   caption: {
     fontFamily: fonts.mono,
-    fontSize: 7,
     letterSpacing: 0.5,
-    marginTop: 2,
+    marginTop: 3,
     textAlign: 'center',
   },
 });

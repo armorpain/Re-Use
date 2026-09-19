@@ -1,47 +1,53 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { Pressable, Text, ActivityIndicator, StyleSheet } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { fonts } from '../theme/typography';
 import { radius } from '../theme/spacing';
 
-/**
- * PrimaryButton
- * Botão com duas variantes (primary/secondary), seguindo a regra do
- * design system: "nunca usar argila em botão de ação comum".
- */
-export default function PrimaryButton({ label, onPress, variant = 'primary' }) {
+
+export default function PrimaryButton({ label, onPress, variant = 'primary', icon, loading, disabled, danger, style }) {
   const isSecondary = variant === 'secondary';
+  const tint = danger ? colors.clay : colors.moss;
+  const textColor = isSecondary ? tint : colors.white;
 
   return (
-    <TouchableOpacity
-      style={[styles.button, isSecondary && styles.buttonSecondary]}
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={label}
+      accessibilityState={{ disabled: !!(disabled || loading), busy: !!loading }}
+      disabled={disabled || loading}
       onPress={onPress}
-      activeOpacity={0.8}
+      style={({ pressed }) => [
+        styles.button,
+        isSecondary ? { borderWidth: 1.5, borderColor: tint } : { backgroundColor: tint },
+        (disabled || loading) && { opacity: 0.5 },
+        pressed && { opacity: 0.85, transform: [{ scale: 0.985 }] },
+        style,
+      ]}
     >
-      <Text style={[styles.label, isSecondary && styles.labelSecondary]}>{label}</Text>
-    </TouchableOpacity>
+      {loading ? (
+        <ActivityIndicator color={textColor} />
+      ) : (
+        <>
+          {icon ? <Feather name={icon} size={18} color={textColor} style={styles.icon} /> : null}
+          <Text style={[styles.label, { color: textColor }]}>{label}</Text>
+        </>
+      )}
+    </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: colors.moss,
+    minHeight: 52,
+    paddingHorizontal: 22,
     paddingVertical: 14,
     borderRadius: radius.sm,
     alignItems: 'center',
-    marginTop: 12,
+    justifyContent: 'center',
+    flexDirection: 'row',
   },
-  buttonSecondary: {
-    backgroundColor: 'transparent',
-    borderWidth: 1.5,
-    borderColor: colors.moss,
-  },
-  label: {
-    fontFamily: fonts.bodySemiBold,
-    color: '#FFFFFF',
-    fontSize: 15,
-  },
-  labelSecondary: {
-    color: colors.moss,
-  },
+  icon: { marginRight: 10 },
+  label: { fontFamily: fonts.bodySemiBold, fontSize: 15 },
 });

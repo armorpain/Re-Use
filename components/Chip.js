@@ -7,15 +7,11 @@ import { radius } from '../theme/spacing';
 const VARIANT_COLORS = {
   novo: colors.moss,
   usado: colors.mustardText,
-  pecas: colors.clay,
+  reparo: colors.clay,
+  pecas: colors.clay, 
 };
 
-/**
- * Chip
- * Etiqueta de condição do item (Como novo / Usado / Para peças).
- * Fonte mono, borda tracejada, sem preenchimento, igual ao guia visual.
- * Reutilizável em qualquer lugar que precise sinalizar o estado de um item.
- */
+
 export default function Chip({ label, variant = 'novo' }) {
   const tint = VARIANT_COLORS[variant] || colors.moss;
   return <Text style={[styles.chip, { borderColor: tint, color: tint }]}>{label}</Text>;

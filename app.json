@@ -2,10 +2,11 @@
   "expo": {
     "name": "ReUse",
     "slug": "reuse-app",
-    "version": "1.0.0",
-    "orientation": "portrait",
+    "version": "2.0.0",
+    "orientation": "default",
     "userInterfaceStyle": "light",
     "backgroundColor": "#ECEFE2",
+    "scheme": "reuse",
     "splash": {
       "backgroundColor": "#ECEFE2"
     },
@@ -14,7 +15,30 @@
       "backgroundColor": "#ECEFE2"
     },
     "ios": {
-      "bundleIdentifier": "com.reuse.app"
-    }
+      "bundleIdentifier": "com.reuse.app",
+      "supportsTablet": true
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single"
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "O ReUse usa a câmera para fotografar os itens que você quer doar, trocar ou vender."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "O ReUse acessa suas fotos para você anunciar itens e escolher a foto de perfil.",
+          "cameraPermission": "O ReUse usa a câmera para fotografar itens e tirar sua foto de perfil."
+        }
+      ],
+      "expo-font",
+      "expo-splash-screen",
+      "expo-status-bar"
+    ]
   }
 }
